@@ -32,9 +32,6 @@ class TaskAdmin(admin.ModelAdmin):
         ('Status & Priority',{
             'fields':(('is_completed', 'priority'),)
         }),
-        ('Timestamps', {
-            'fields': ('created_at',)
-        }),
     )
 
 

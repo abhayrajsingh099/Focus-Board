@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <h4>{{ message }}</h4>
+        {% endfor %}
+    {% endif %}
+    <h2>Detail of Task:-</h2>
+    <hr>
+    <h6>{{ task.title }}</h6>
+    <h6>{{ task.description }}</h6>
+    <h6>{{ task.get_priority_display }}</h6>
+    <h6>{{ task.is_completed }}</h6>
+    <h6>{{ task.created_at }}</h6>
+
+    <a href="{% url 'tasks:edit' task.id %}"><h3>Edit</h3></a>
+    <a href="{% url 'tasks:delete' task.id %}"><h3>Delete</h3></a>
+
+</body>
+</html>

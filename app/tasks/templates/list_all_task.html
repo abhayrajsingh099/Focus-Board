@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <h4>{{ message }}</h4>
+        {% endfor %}
+    {% endif %}
+    <h1>List of all Tasks:-</h1>
+    {% for task in tasks %}
+        <a href="{% url 'tasks:detail' task.id %}"><h4>{{ task }}</h4></a>
+    {% endfor %}
+
+    <a href="{% url 'tasks:create' %}"><h2>Create new Task</h2></a>
+</body>
+</html>
