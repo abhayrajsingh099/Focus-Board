@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'tasks',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -117,3 +118,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+LOGIN_REDIRECT_URL = 'tasks:list_task'
+LOGOUT_REDIRECT_URL = 'user:login'

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Task
 from .forms import CreateTaskForm
@@ -8,7 +9,10 @@ from .forms import CreateTaskForm
 def add(a, b, **extras):
     return a+b
 
+@login_required
 def ListAllTasksView(request):
+
+    print(request.user)
 
     tasks = Task.objects.all().order_by('-created_at')
     messages.success(request, message="ALL Task Listed..")
@@ -19,12 +23,14 @@ def ListAllTasksView(request):
             status=200,
         )
 
+@login_required
 def TaskDetail(request, id):
 
     task = get_object_or_404(Task, id=id)
 
     return render(request, 'detail_task.html', context={'task':task})
 
+@login_required
 def CreateTask(request):
 
     if request.method == 'POST':
@@ -43,7 +49,7 @@ def CreateTask(request):
 
     return render(request, 'addtask.html', context={'form':form})
 
-
+@login_required
 def EditTask(request, id):
 
     task = get_object_or_404(Task, id=id)
@@ -61,6 +67,7 @@ def EditTask(request, id):
 
     return render(request, 'edit.html', context={'form':form})
 
+@login_required
 def DeleteTask(request, id):
 
     task = get_object_or_404(Task, id=id)
