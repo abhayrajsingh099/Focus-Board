@@ -25,7 +25,9 @@ def task_detail(request, id):
 
     return Response(serializer.data)
 
+
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def create_task(request):
     serializer = TaskSerializer(data=request.data)
     if serializer.is_valid():
@@ -35,6 +37,7 @@ def create_task(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def update_task(request, id):
     task = get_object_or_404(Task, id=id)
     serializer = TaskSerializer(task, data=request.data)
@@ -46,6 +49,7 @@ def update_task(request, id):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
 def update_patch(request, id):
     task = get_object_or_404(Task, id=id)
     serializer = TaskSerializer(task, data=request.data, partial=True)
@@ -58,6 +62,7 @@ def update_patch(request, id):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def delete_task(request, id):
     task = get_object_or_404(Task, id=id)
 
