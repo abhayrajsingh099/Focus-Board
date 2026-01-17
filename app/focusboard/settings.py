@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'tasks',
     'user',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,9 @@ STATIC_URL = 'static/'
 
 LOGIN_REDIRECT_URL = 'tasks:list_task'
 LOGOUT_REDIRECT_URL = 'user:login'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}   
